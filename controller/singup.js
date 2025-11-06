@@ -4,6 +4,7 @@ import { db } from "../firebase.config.js";
 export const handleSignup = async (req, res) => {
   const { email, password } = req.body;
   const hashedPassword = await hashPassword(password);
+  console.log(`Hashed password for ${email}: ${hashedPassword}`);
   try {
     const userRef = db.collection("users").doc();
     await userRef.set({
