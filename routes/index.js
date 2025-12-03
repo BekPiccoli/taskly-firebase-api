@@ -38,14 +38,25 @@ import {
 import { upsertAttendanceController } from "../controller/attendance/upsertAttendance.js";
 
 // Dashboard controllers
+import { resetPassword } from "../controller/auth/resetPassword.js";
 import {
   getDashboardOverviewController,
   getTasksSummaryController,
   getUpcomingTasksController,
 } from "../controller/dashboard/getDashboard.js";
-import { resetPassword } from "../controller/auth/resetPassword.js";
 
 export const routes = (app) => {
+  // ========================================
+  // ROTA DE HEALTH CHECK
+  // ========================================
+  app.get("/ping", (req, res) => {
+    res.status(200).json({ 
+      message: "pong",
+      status: "ok",
+      timestamp: new Date().toISOString()
+    });
+  });
+
   // ========================================
   // ROTAS DE AUTENTICAÇÃO
   // ========================================
